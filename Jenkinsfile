@@ -1,19 +1,16 @@
 pipeline {
-    agent any 
+    agent any
+    parameters{
+        string(name: 'userName',defaultValue: 'Anthony',description: 'please give a name')
+        choice(name: 'version',choices: ['1.1','1.2','1.3'],description: 'select the version to test')
+        booleanParam(name: 'is_boy',defaultValue: true,description: 'you is boy or not')
+    }
     stages {
-        stage('Build') { 
-            steps {
-                println "Build" 
-            }
-        }
         stage('Test') { 
             steps {
-                println "Test" 
-            }
-        }
-        stage('Deploy') { 
-            steps {
-                println "Deploy" 
+                scripts {
+                    sh "java -version"
+                }
             }
         }
     }
